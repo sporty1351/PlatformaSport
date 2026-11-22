@@ -203,7 +203,7 @@ private fun MembershipBanner(
         ) {
             drawRhombusMark(
                 alpha = 0.06f,
-                centerOffset = Offset(size.width * 0.34f, -size.height * 0.1f)
+                centerOffset = Offset.Zero
             )
         }
         Column(Modifier.padding(20.dp)) {
@@ -454,9 +454,10 @@ private fun ClubInfo(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Text("Клуб", style = MaterialTheme.typography.titleMedium, color = TextPrimary)
-            InfoLine("Ижевск, ул. 9 Января, 219А")
-            InfoLine("Ежедневно 06:00 — 00:00")
-            InfoLine("+7 (3412) 913-268")
+            InfoLine(ru.platformasport.club.data.ClubContacts.ADDRESS)
+            InfoLine("Часы работы уточняйте на ресепшене")
+            InfoLine(ru.platformasport.club.data.ClubContacts.PHONE)
+            InfoLine(ru.platformasport.club.data.ClubContacts.WEBSITE)
             Spacer(Modifier.height(4.dp))
             Box(
                 Modifier

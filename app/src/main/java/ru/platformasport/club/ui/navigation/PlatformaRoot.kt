@@ -42,6 +42,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import ru.platformasport.club.ui.shop.ShopScreen
 import ru.platformasport.club.ui.AppViewModel
 import ru.platformasport.club.ui.auth.AuthFlow
 import ru.platformasport.club.ui.balance.TopUpScreen
@@ -111,7 +112,7 @@ private fun MainShell(appViewModel: AppViewModel) {
             composable(Routes.HOME) {
                 HomeScreen(
                     viewModel = appViewModel,
-                    onOpenCard = { navController.navigateTab(Routes.CARD) },
+                    onOpenCard = { navController.navigate(Routes.CARD) },
                     onOpenSchedule = { navController.navigateTab(Routes.SCHEDULE) },
                     onOpenTariffs = { navController.navigateTab(Routes.TARIFFS) },
                     onTopUp = { navController.navigate(Routes.TOP_UP) },
@@ -124,6 +125,7 @@ private fun MainShell(appViewModel: AppViewModel) {
                     onOpenAdmin = { navController.navigate(Routes.ADMIN_SCHEDULE) }
                 )
             }
+            composable(Routes.SHOP) { ShopScreen(appViewModel) }
             composable(Routes.CARD) {
                 ClubCardScreen(
                     viewModel = appViewModel,
@@ -228,9 +230,9 @@ private fun PlatformaBottomBar(navController: NavHostController, currentRoute: S
         ) {
             left.forEach { Tab(it, currentRoute, Modifier.weight(1f), navController) }
             CardTab(
-                selected = currentRoute == Routes.CARD,
+                selected = currentRoute == Routes.SHOP,
                 modifier = Modifier.weight(1f),
-                onClick = { navController.navigateTab(Routes.CARD) }
+                onClick = { navController.navigateTab(Routes.SHOP) }
             )
             right.forEach { Tab(it, currentRoute, Modifier.weight(1f), navController) }
         }
@@ -271,7 +273,7 @@ private fun Tab(
     }
 }
 
-/** Клубная карта вынесена в центр — это то, ради чего приложение открывают у турникета. */
+/** Центральная вкладка каталога клуба. */
 @Composable
 private fun CardTab(selected: Boolean, modifier: Modifier, onClick: () -> Unit) {
     val scale by animateFloatAsState(if (selected) 1.1f else 1f, label = "cardTabScale")
@@ -296,7 +298,7 @@ private fun CardTab(selected: Boolean, modifier: Modifier, onClick: () -> Unit) 
             RhombusMark(size = 34.dp, alpha = if (selected) 1f else 0.5f)
         }
         Text(
-            "Карта",
+            "Магазин",
             style = MaterialTheme.typography.labelSmall,
             color = if (selected) TileWhite else TextMuted
         )

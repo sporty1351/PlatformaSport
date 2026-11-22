@@ -24,7 +24,7 @@ import ru.platformasport.club.ui.theme.TileSilver
 import ru.platformasport.club.ui.theme.TileWhite
 
 /**
- * Знак клуба: сетка 3×3 из скруглённых плиток, повёрнутая на 45°,
+ * Знак клуба: девять плиток в ромбической проекции,
  * с красной плиткой в центре. Рисуется, а не растрируется, поэтому
  * одинаково хорошо смотрится и в 24 dp, и на всю ширину карточки.
  */
@@ -47,35 +47,30 @@ fun DrawScope.drawRhombusMark(
     alpha: Float = 1f,
     centerOffset: Offset = Offset.Zero
 ) {
-    val d = size.minDimension
-    val tile = d * 0.19f
-    val gap = tile * 0.16f
-    val step = tile + gap
+    // Девять плиток в перспективе, как в фирменном знаке клуба.
+    // Координаты заданы в общей системе: весь силуэт помещается в Canvas.
+    val unit = minOf(size.width / 6.6f, size.height / 4.7f)
     val cx = center.x + centerOffset.x
-    val cy = center.y + centerOffset.y
+    val cy = center.y - unit * 0.25f + centerOffset.y
+    for (row in 0..2) for (col in 0..2) {
 
-    rotate(45f, pivot = Offset(cx, cy)) {
-        for (row in 0..2) {
-            for (col in 0..2) {
-                val color = when {
-                    row == 1 && col == 1 -> accent
-                    (row + col) % 2 == 0 -> light
-                    else -> dim
-                }
-                drawRoundRect(
-                    color = color.copy(alpha = color.alpha * alpha),
-                    topLeft = Offset(
-                        cx + (col - 1) * step - tile / 2f,
-                        cy + (row - 1) * step - tile / 2f
-                    ),
-                    size = Size(tile, tile),
-                    cornerRadius = CornerRadius(tile * 0.2f)
-                )
-            }
+        val x = cx + (col - row) * unit
+        val y = cy + (col + row - 2) * unit * 0.70f
+        val color = when {
+            row == 1 && col == 1 -> accent
+            (row + col) % 2 == 0 -> light
+            else -> dim
         }
+        val path = androidx.compose.ui.graphics.Path().apply {
+            moveTo(x, y - unit * 0.59f)
+            lineTo(x + unit * 0.86f, y)
+            lineTo(x, y + unit * 0.59f)
+            lineTo(x - unit * 0.86f, y)
+            close()
+        }
+        drawPath(path, color.copy(alpha = color.alpha * alpha))
     }
 }
-
 /** Логотип целиком — знак, название и подпись. Используется на входе в приложение. */
 @Composable
 fun BrandLockup(

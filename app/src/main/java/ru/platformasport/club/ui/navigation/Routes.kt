@@ -4,6 +4,7 @@ object Routes {
     const val HOME = "home"
     const val SCHEDULE = "schedule"
     const val CARD = "card"
+    const val SHOP = "shop"
     const val TARIFFS = "tariffs"
     const val PROFILE = "profile"
 
@@ -15,5 +16,5 @@ object Routes {
     const val CHECKOUT_PATTERN = "checkout/{tariffId}/{months}"
     fun checkout(tariffId: String, months: Int) = "checkout/$tariffId/$months"
 
-    val bottomBar = setOf(HOME, SCHEDULE, CARD, TARIFFS, PROFILE)
+    val bottomBar = setOf(HOME, SCHEDULE, SHOP, TARIFFS, PROFILE)
 }

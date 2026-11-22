@@ -17,6 +17,7 @@ class AppContainer(context: Context) {
 
     /** Здесь меняется заглушка на реальную реализацию, когда появится система клуба. */
     val crm: ExternalCrmApi = FakeCrmApi()
+    val shop = ru.platformasport.club.data.repository.ShopRepository(context)
 
     val session = SessionRepository(preferences, crm)
     val schedule = ScheduleRepository(preferences)

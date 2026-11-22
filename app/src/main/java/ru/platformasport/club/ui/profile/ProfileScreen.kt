@@ -307,7 +307,7 @@ fun ProfileScreen(
 
             Spacer(Modifier.height(20.dp))
             Text(
-                "Спортивный клуб «Платформа» · Ижевск, ул. 9 Января, 219А\n+7 (3412) 913-268 · platformasport.ru",
+                ru.platformasport.club.data.ClubContacts.summary,
                 style = MaterialTheme.typography.bodySmall,
                 color = TextMuted,
                 lineHeight = 18.sp

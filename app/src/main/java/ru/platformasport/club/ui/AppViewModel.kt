@@ -30,6 +30,14 @@ class AppViewModel(
     private val container: AppContainer = PlatformaApplication.container
 ) : ViewModel() {
 
+    val products = container.shop.products
+    fun saveProduct(product: ru.platformasport.club.data.repository.Product) {
+        if (session.value.profile?.isAdmin == true) container.shop.save(product)
+    }
+    fun deleteProduct(id: String) {
+        if (session.value.profile?.isAdmin == true) container.shop.delete(id)
+    }
+
     val session: StateFlow<SessionState> = container.session.state
     val sessionRestored: StateFlow<Boolean> = container.session.restored
     val events: StateFlow<List<ClassEvent>> = container.schedule.events

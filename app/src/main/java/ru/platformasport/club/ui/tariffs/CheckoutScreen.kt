@@ -337,7 +337,7 @@ private fun PurchaseResult(
         )
         Spacer(Modifier.height(6.dp))
         Text(
-            "Карта уже обновилась — можно проходить через турникет.",
+            "Абонемент обновлён. Для посещения предъявите карту на ресепшене.",
             style = MaterialTheme.typography.bodySmall,
             color = Success,
             textAlign = TextAlign.Center,

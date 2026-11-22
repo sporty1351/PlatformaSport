@@ -1,4 +1,0 @@
-ru.platformasport.club.test.app-androidTest-0 C:\PlatformaSport\app\build\generated\res\resValues\androidTest\debug
-ru.platformasport.club.test.app-mergeDebugAndroidTestResources-1 C:\PlatformaSport\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-ru.platformasport.club.test.app-mergeDebugAndroidTestResources-2 C:\PlatformaSport\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-ru.platformasport.club.test.app-debugAndroidTest-3 C:\PlatformaSport\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
