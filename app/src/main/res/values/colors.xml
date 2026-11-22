@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="graphite">#FF2E2C2B</color>
+    <color name="graphite_deep">#FF1E1D1C</color>
+    <color name="platforma_red">#FFE31E24</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
